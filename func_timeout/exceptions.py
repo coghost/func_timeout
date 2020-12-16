@@ -9,6 +9,7 @@ __all__ = ('FunctionTimedOut', 'RETRY_SAME_TIMEOUT')
 
 RETRY_SAME_TIMEOUT = 'RETRY_SAME_TIMEOUT'
 
+
 class FunctionTimedOut(BaseException):
     '''
         FunctionTimedOut - Exception raised when a function times out
@@ -22,7 +23,6 @@ class FunctionTimedOut(BaseException):
         @method retry - Retries the function with same arguments, with option to run with original timeout, no timeout, or a different
           explicit timeout. @see FunctionTimedOut.retry
     '''
-
 
     def __init__(self, msg='', timedOutAfter=None, timedOutFunction=None, timedOutArgs=None, timedOutKwargs=None):
         '''
@@ -55,7 +55,6 @@ class FunctionTimedOut(BaseException):
 
         self.msg = msg
 
-
     def getMsg(self):
         '''
             getMsg - Generate a default message based on parameters to FunctionTimedOut exception'
@@ -69,11 +68,11 @@ class FunctionTimedOut(BaseException):
         else:
             timedOutFuncName = 'Unknown Function'
         if self.timedOutAfter is not None:
-            timedOutAfterStr = "%f" %(self.timedOutAfter, )
+            timedOutAfterStr = "%f" % (self.timedOutAfter, )
         else:
             timedOutAfterStr = "Unknown"
 
-        return 'Function %s (args=%s) (kwargs=%s) timed out after %s seconds.\n' %(timedOutFuncName, repr(self.timedOutArgs), repr(self.timedOutKwargs), timedOutAfterStr)
+        return 'Function %s (args=%s) (kwargs=%s) timed out after %s seconds.\n' % (timedOutFuncName, repr(self.timedOutArgs), repr(self.timedOutKwargs), timedOutAfterStr)
 
     def retry(self, timeout=RETRY_SAME_TIMEOUT):
         '''
